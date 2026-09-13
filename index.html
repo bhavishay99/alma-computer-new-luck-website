@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alma Computer Institute Mawana - Official Website</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #0acf5c;
+            color: #222;
+        }
+
+        header {
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #8b0000;
+            background-color: #0b1e36;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box img {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #b8860b;
+            background: #fff;
+        }
+
+        .logo-box h1 {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .logo-box p {
+            font-size: 11px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .nav-btns button {
+            padding: 7px 14px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 13px;
+        }
+
+        .btn-login {
+            background-color: #b8860b;
+            color: #000;
+            border: 1px solid #fff;
+        }
+
+        .btn-login:hover {
+            background-color: #d4af37;
+        }
+
+        .btn-reg {
+            background-color: #8b0000;
+            color: white;
+            border: 1px solid #fff;
+        }
+
+        .btn-reg:hover {
+            background-color: #a00000;
+        }
+
+        .btn-logout {
+            background-color: #333;
+            color: white;
+            display: none;
+        }
+
+        .user-status {
+            display: none;
+            color: #ffcc00;
+            font-size: 13px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .news-marquee {
+            background-color: #8b0000;
+            color: white;
+            padding: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            border-bottom: 1px solid #000;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 80px 20px;
+            background: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid #b8860b;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 34px;
+            color: #ffcc00;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .hero p {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .login-box-notice {
+            background-color: #ffffff;
+            border: 2px solid #002147;
+            border-top: 4px solid #8b0000;
+            max-width: 550px;
+            margin: 25px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+            color: #000;
+        }
+
+        .login-box-notice p {
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: #222;
+            text-shadow: none;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .heading {
+            text-align: center;
+            color: #002147;
+            margin-bottom: 25px;
+            font-size: 22px;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .cards-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-top: 4px solid #002147;
+            padding: 18px;
+            width: 300px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #8b0000;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .batch-time {
+            color: #002147 !important;
+            margin-top: 10px;
+            font-size: 12px !important;
+            font-weight: bold;
+        }
+
+        .price-tag {
+            background-color: #28a745;
+            color: white;
+            padding: 3px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #protectedView {
+            display: none;
+        }
+
+        .welcome-msg {
+            background-color: #002147;
+            color: white;
+            padding: 15px;
+            border-left: 5px solid #b8860b;
+            margin-bottom: 25px;
+        }
+
+        .welcome-msg h2 {
+            color: #ffcc00;
+            font-size: 20px;
+        }
+
+        /* Form Services Section */
+        .forms-wrapper {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 5px solid #002147;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 5px;
+            background: #e0e0e0;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .tab-btn.active {
+            background: #002147;
+            color: white;
+        }
+
+        .form-card {
+            display: none;
+        }
+
+        .form-card.active-card {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .qr-section {
+            background: #eaf4ff;
+            padding: 15px;
+            border: 1px dashed #002147;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            padding: 10px;
+            background: #8b0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-submit-btn:hover {
+            background: #a00000;
+        }
+
+        .footer-divider {
+            margin-top: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #b8860b, #ffcc00, #b8860b, transparent);
+            z-index: 1;
+        }
+
+        .footer-divider span {
+            position: relative;
+            z-index: 2;
+            background-color: #0b1e36;
+            color: #ffcc00;
+            padding: 8px 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid #b8860b;
+            letter-spacing: 1px;
+            box-shadow: 0px 3px 6px rgba(0,0,0,0.4);
+            display: inline-block;
+        }
+
+        footer {
+            background: linear-gradient(180deg, #0b1e36 0%, #050d18 100%);
+            color: #ffffff;
+            padding: 40px 20px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-box {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .footer-box h4 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-bottom: 2px solid #b8860b;
+            padding-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-box p {
+            color: #d1d5db;
+            font-size: 13px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .social-id ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .social-button a {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 4px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+
+        .facebook-button a { background-color: #1877f2; }
+        .youtube-button a { background-color: #ff0000; }
+        .instagram-button a { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+        .bottom-bar {
+            max-width: 1100px;
+            margin: 30px auto 0 auto;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .bottom-bar .dev-credit {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .popup-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-box {
+            background-color: #ffffff;
+            padding: 25px;
+            width: 320px;
+            border: 2px solid #002147;
+            border-top: 5px solid #8b0000;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .popup-box h3 {
+            color: #002147;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #000;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 9px;
+            background-color: #002147;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .close-btn {
+            text-align: center;
+            margin-top: 12px;
+            color: #666;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+            <img class="XNo5Ab" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAY1BMVEVHcEwFgY0FgY0FgY0FgY0FgY0FgY0FgY0EgY0FgY0FgY0Af4sFgY0FgY0FgY0Ae4dCmqNcpq1/usHa6+wyk53B3+L0+fj///9ztbul0NQFgY0phoXZv4d1lW/L5ej94rvfrVAtANASAAAAG3RSTlMABw0PMGq59P8jif/jT8X//////////////7haq6fPAAABF0lEQVR4AY3TBZKEMBAFUJzGLYoE7n/KjXX1zPofQV7Fk4SSZrlNliYUlKKsarCpq7L45E3rpevcf982rzaMnqZ5mTyPw4v13mDdthVCYVQ0xoWUgrM3bUbwYcqhXj3C6NtN22C2qF5XvSwBoU0tFjWgTjZdNOgLiyX8kNLWumO543CX48CiVZpkaMt5uet1LhBSZ4gdM/dzdN3x3IbFsnnSQMgixflc13MKuXzBVUp5n+dtLysgYptK2hjj/hVhHdvk9jX3f6zDDqUVkBpOZodCk9DNmytp5o4mISl6VCWMEWrCYRZvEw+bMZu90MTTksG0cr5iwbGhxY59wt7QViDVeiKjDRY7HAuOw49bs26bf2zqX4/DBzaGG92EOUmmAAAAAElFTkSuQmCC" style="height:26px;width:26px" alt="">
+            <div>
+                <h1>Alma Computer Mawana</h1>
+                <p>ISO CERTIFIED INSTITUTE</p>
+            </div>
+        </div>
+
+        <div class="nav-btns">
+            <span class="user-status" id="userStatus">Student Logged In</span>
+            <button class="btn-login" id="loginBtn" onclick="showPopup('login')">Login</button>
+            <button class="btn-reg" id="regBtn" onclick="showPopup('register')">New Registration</button>
+            <button class="btn-logout" id="logoutBtn" onclick="doLogout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="news-marquee">
+        <marquee scrollamount="6">
+            HOLIDAY HOMEWORK! | CHUTTI KE JANKARI! | SOSAL MEDIA PAR HAMARAI SATH JUDAI INSTA ID=SAURABHPOSWAL | CCC ME PASS KARNE KI 100% GUARANTEE! | SABHI COMPUTER COURSES SASTE RATE PAR UPLABDH HAIN! | LOGIN KAREIN AUR SARI DETAILS DEKHEIN!
+        </marquee>
+    </div>
+
+    <div class="hero">
+        <h2>WELCOME TO ALMA COMPUTER MAWANA</h2>
+        <p>Mawana Ka Sabse Bharosemand & No.1 Computer Centre</p>
+
+        <div class="login-box-notice" id="loginBoxNotice">
+            <p><b> Notice:</b> Complete Course Details, Batch Timings aur Fee Structure dekhne ke liye Login ya Registration karein.</p>
+            <button class="btn-login" style="padding: 8px 18px; font-weight: bold; cursor: pointer;" onclick="showPopup('login')">Abhi Login Karein</button>
+        </div>
+    </div>
+
+    <div class="main-container" id="protectedView">
+        <div class="welcome-msg">
+            <h2>Abhinandan! Aapka Dashboard Unlock Ho Gaya Hai</h2>
+            <p>Niche aap sabhi computer courses ki full detail, saste rates aur batch timing dekh sakte hain.</p>
+        </div>
+
+        <!-- Forms Area -->
+        <div class="forms-wrapper">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab('regFormTab')">1.online registration</button>
+                <button class="tab-btn" onclick="openTab('leaveFormTab')">2. leave applicaction</button>
+                <button class="tab-btn" onclick="openTab('waFormTab')">3. WhatsApp grup riquest</button>
+            </div>
+
+            <!-- 1. Registration Form -->
+            <div id="regFormTab" class="form-card active-card">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="57972bc0-47cd-4ca5-8117-30b83255ea1f">
+                    <input type="hidden" name="subject" value="New Student Registration - ALMA Computers">
+
+                    <div class="form-group">
+                        <label>Student Name :</label>
+                        <input type="text" name="Student_Name" placeholder="student name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Father's Name:</label>
+                        <input type="text" name="Father_Name" placeholder="father name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mobile Number:</label>
+                        <input type="tel" name="Mobile_No" placeholder="10mobile no" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp Number:</label>
+                        <input type="tel" name="WhatsApp_No" placeholder="WhatsApp number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email ID :</label>
+                        <input type="email" name="Student_Email" placeholder="student email" required>
+                    </div>
+
+                    <div class="qr-section">
+                        <p style="font-weight: bold; color: #8b0000;">registration (QR Code Scan)</p>
+                        <p style="font-size: 12px; margin: 5px 0;">:</p>
+                        <p style="font-size: 13px; font-weight: bold; color: #002147;">UPI ID: 9084220196@fam</p>
+                        
+                        <div class="form-group" style="text-align: left; margin-top: 10px;">
+                            <label>Payment UTR / Transaction ID:</label>
+                            <input type="text" name="Payment_UTR" placeholder="after payment please type your 12 numbers UTR / Txn ID" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">submit</button>
+                </form>
+            </div>
+
+            <!-- 2. Leave Application Form -->
+            <div id="leaveFormTab" class="form-card">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="57972bc0-47cd-4ca5-8117-30b83255ea1f">
+                    <input type="hidden" name="subject" value="New Leave Application - ALMA Computers">
+
+                    <div class="form-group">
+                        <label>Student Name (name):</label>
+                        <input type="text" name="Student_Name" placeholder="type your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Batch Timing (batch timing):</label>
+                        <input type="text" name="Batch_Time" placeholder="ex". 8:00 AM to 10:00 AM" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Leave Reason (Leave Reason):</label>
+                        <textarea name="Leave_Reason" rows="3" placeholder= required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Total Days (day of leave):</label>
+                        <input type="number" name="Total_Days" placeholder="ex. 1 & 2 " required>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">applicaction sent</button>
+                </form>
+            </div>
+
+            <!-- 3. WhatsApp Group Request Form -->
+            <div id="waFormTab" class="form-card">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="57972bc0-47cd-4ca5-8117-30b83255ea1f">
+                    <input type="hidden" name="subject" value="WhatsApp Group Join Request - ALMA Computers">
+
+                    <div class="form-group">
+                        <label>Student Name :</label>
+                        <input type="text" name="Student_Name" placeholder="fill your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp Number :</label>
+                        <input type="tel" name="WhatsApp_No" placeholder="10 words" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Course Name:</label>
+                        <input type="text" name="Course_Name" placeholder="ex. CCC, Tally, Web Development" required>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">Add watshapp grup</button>
+                </form>
+            </div>
+        </div>
+
+        <h2 class="heading">All Unlocked Computer courses</h2>
+        
+        <div class="cards-flex">
+            <div class="card">
+                <h3>CCC (Course on Computer Concepts)</h3>
+                <p>Complete Government Exam Preparation, Mock Tests, Typing & MS Office.</p>
+                <p class="batch-time"> Batch Timing: 08:00 AM - 10:00 AM</p>
+                <span class="price-tag">Sasta Rate: Special Discount</span>
+            </div>
+
+            <div class="card">
+                <h3>DCA (Diploma in Computer Application)</h3>
+                <p>MS Word, Excel, PowerPoint, Internet Knowledge, Typing and Hardware Basics.</p>
+                <p class="batch-time"> Batch Timing: 10:00 AM - 12:00 PM</p>
+                <span class="price-tag"> Affordable Monthly</span>
+            </div>
+
+            <div class="card">
+                <h3>ADCA (Advance Diploma in Computer)</h3>
+                <p>1 Year Complete Diploma including Graphic Design, Tally Prime & Web Basics.</p>
+                <p class="batch-time"> Batch Timing: 01:00 PM - 03:00 PM</p>
+                <span class="price-tag"> Lowest Guaranteed</span>
+            </div>
+
+            <div class="card">
+                <h3>Tally Prime + GST Accounting</h3>
+                <p>Complete Corporate Accounting, Ledger, Inventory & Tax Billing.</p>
+                <p class="batch-time"> Batch Timing: 03:00 PM - 05:00 PM</p>
+                <span class="price-tag"> Student Special</span>
+            </div>
+
+            <div class="card">
+                <h3>Graphic Designing Masterclass</h3>
+                <p>Photoshop, CorelDraw, Poster Design, Flex Board Design & Logo Creation.</p>
+                <p class="batch-time"> Batch Timing: 04:00 PM - 05:30 PM</p>
+                <span class="price-tag">Discount Available</span>
+            </div>
+
+            <div class="card">
+                <h3>Web Development & Coding</h3>
+                <p>HTML, CSS, JavaScript, C, C++ and Python Programming Language.</p>
+                <p class="batch-time"> Batch Timing: Evening Special Batch</p>
+                <span class="price-tag"> Pocket Friendly</span>
+            </div>
+
+            <div class="card">
+                <h3>100% जॉब सहायता एवं प्लेसमेंट सपोर्ट (Job Assistance)</h3>
+                <p>अल्मा कंप्यूटर मावना में केवल कंप्यूटर ट्रेनिंग ही नहीं, बल्कि आपके उज्ज्वल भविष्य की गारंटी भी मिलती है। कोर्स पूरा करने के बाद हम सभी विद्यार्थियों को जॉब दिलाने में पूरी मदद करते हैं।</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-divider">
+        <span>अपने सपनों को दो नई उड़ान — Saurav Poswal के साथ!</span>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-box">
+                <h4>Contact Details</h4>
+                <p> Helpline: 9548464341</p>
+                <p> Email: almacomputermawana@gmail.com</p>
+                <p> Location: Mawana, Uttar Pradesh</p>
+            </div>
+            
+            <div class="footer-box">
+                <h4>Payment Details</h4>
+                <p> UPI ID: 9084220196@fam</p>
+                <p> Mode: PhonePe, GPay, Paytm, FamX</p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Connect With Us</h4>
+                <p>Follow our official social channels for updates and notices:</p>
+                <div class="social-id">
+                    <ul>
+                        <li class="social-button facebook-button">
+                            <a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/saurabhposwal" title="Facebook"><span>Facebook</span></a>
+                        </li>
+                        <li class="social-button youtube-button">
+                            <a rel="noopener noreferrer" target="_blank" href="http://www.youtube.com/@almacomputermawana" title="YouTube"><span>YouTube</span></a>
+                        </li>
+                        <li class="social-button instagram-button">
+                            <a rel="noopener noreferrer" target="_blank" href="https://instagram.com/saurabhposwal" title="Instagram"><span>Instagram</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <div>© 2026 Alma Computer Mawana. All Rights Reserved.</div>
+            <div>Developer: <span class="dev-credit">BHAVISHAY GURJAR</span></div>
+        </div>
+    </footer>
+
+    <!-- Popup Box for Login / Register -->
+    <div class="popup-bg" id="popupBg">
+        <div class="popup-box">
+            <h3 id="popTitle">Student Login</h3>
+            
+            <form onsubmit="submitForm(event)">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" id="loginUser" required placeholder="Enter name">
+                </div>
+                
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPass" required placeholder="Enter password">
+                </div>
+
+                <button type="submit" class="submit-btn" id="popBtn">Login Karein</button>
+            </form>
+
+            <div class="close-btn" onclick="hidePopup()">Close</div>
+        </div>
+    </div>
+
+    <script>
+        function showPopup(type) {
+            var bg = document.getElementById('popupBg');
+            var title = document.getElementById('popTitle');
+            var btn = document.getElementById('popBtn');
+
+            if(type === 'login') {
+                title.innerText = 'Student Login';
+                btn.innerText = 'Login Karein';
+            } else {
+                title.innerText = 'New Registration';
+                btn.innerText = 'Register & Unlock';
+            }
+            bg.style.display = 'flex';
+        }
+
+        function hidePopup() {
+            document.getElementById('popupBg').style.display = 'none';
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            
+            var u = document.getElementById('loginUser').value.trim();
+            var p = document.getElementById('loginPass').value.trim();
+
+            // Simple login check logic
+            if (u === "alma" && p === "gujj7878") {
+                hidePopup();
+                document.getElementById('loginBoxNotice').style.display = 'none';
+                document.getElementById('protectedView').style.display = 'block';
+
+                document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('regBtn').style.display = 'none';
+                document.getElementById('logoutBtn').style.display = 'inline-block';
+                document.getElementById('userStatus').style.display = 'inline-block';
+
+                alert("ALMA COMPUTER AAPKA HARDIK SWAGAT KARTA HAI!");
+            } else {
+                alert("ERROR TRY AGAIN");
+            }
+        }
+
+        function doLogout() {
+            document.getElementById('loginBoxNotice').style.display = 'block';
+            document.getElementById('protectedView').style.display = 'none';
+
+            document.getElementById('loginBtn').style.display = 'inline-block';
+            document.getElementById('regBtn').style.display = 'inline-block';
+            document.getElementById('logoutBtn').style.display = 'none';
+            document.getElementById('userStatus').style.display = 'none';
+
+            alert("Ham aapka intezar karenge.");
+        }
+
+        function openTab(tabId) {
+            var cards = document.querySelectorAll('.form-card');
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].classList.remove('active-card');
+            }
+
+            var buttons = document.querySelectorAll('.tab-btn');
+            for (var j = 0; j < buttons.length; j++) {
+                buttons[j].classList.remove('active');
+            }
+
+            document.getElementById(tabId).classList.add('active-card');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
